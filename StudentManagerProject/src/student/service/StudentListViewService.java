@@ -28,7 +28,7 @@ public class StudentListViewService implements StudentService {
 			case 1:
 				StudentManager.ascendingName().forEach(t -> {System.out.println(t);});
 //			System.out.println(StudentManager.ascendingName()); // 7v 
-				Logger logger = Logger.getLogger("@@@@@");
+				Logger logger = Logger.getLogger("");
 				logger.info("StudentManager.ascendingName()");
 				break;
 			case 2:

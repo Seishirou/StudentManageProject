@@ -1,5 +1,7 @@
 package student.service;
 
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,12 +24,22 @@ public class StudentStatisticsService implements StudentService {
 			int menu = scan.nextInt();
 			switch (menu) {
 			case 1:
-				List<Student> l1 = StudentManager.genderGroup().get("남자");
-				System.out.println("[남자 그룹]");
-				l1.stream().forEach(t -> {System.out.println(t);});
-				List<Student> l2 = StudentManager.genderGroup().get("여자");
-				System.out.println("[여자 그룹]");
-				l2.stream().forEach(t -> {System.out.println(t);});
+//				List<Student> l1 = StudentManager.genderGroup().get("남자");
+//				System.out.println("[남자 그룹]");
+//				l1.stream().forEach(t -> {System.out.println(t);});
+//				List<Student> l2 = StudentManager.genderGroup().get("여자");
+//				System.out.println("[여자 그룹]");
+//				l2.stream().forEach(t -> {System.out.println(t);});
+				List<Student> list = StudentManager.genderGroup();
+				for (int i = 0; i < list.size(); i++) {
+					if("남자".equals(list.get(i).getGender())){
+						System.out.println("[남자그룹]");
+						System.out.println(list.get(i));
+					} else {
+						System.out.println("[여자그룹]");
+						System.out.println(list.get(i));
+					}
+				} 
 				break;
 			case 2:
 				System.out.println("[반별 성적 평균] : " + StudentManager.groupAverage());

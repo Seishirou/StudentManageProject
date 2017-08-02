@@ -1,6 +1,7 @@
 package student.manage;
 /**
  * Linked List 사용
+
  * Student 관련 데이터 처리하는 클래스
  * 입출력 불가능
  */
@@ -114,9 +115,19 @@ public class StudentManager {
 
 	// #5 통계 정보
 	// 성별별 그룹핑
-	public static Map<String, List<Student>> genderGroup() {
-		Map<String, List<Student>> map = list.stream().collect(Collectors.groupingBy(t -> t.getGender()));
-		return map;
+//	public static Map<String, List<Student>> genderGroup() {
+//		Map<String, List<Student>> map = list.stream().collect(Collectors.groupingBy(t -> t.getGender()));
+//		return map;
+//	}
+	
+	public static List<Student> genderGroup() {
+		Collections.sort(list, new Comparator<Student>() {
+			@Override
+			public int compare(Student o1, Student o2) {
+				return o1.getGender().compareTo(o2.getGender());
+			}
+		});
+		return list;
 	}
 
 	// 반별 성적 평균
