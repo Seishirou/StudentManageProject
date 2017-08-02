@@ -22,9 +22,9 @@ public class StudentGradeService implements StudentService{
 		}
 		
 		if(StudentManager.addScore(num, score)) {
-			System.out.println("점수 입력이 성공했습니다.");
+			System.out.println("[점수 입력 성공]");
 		} else {
-			System.out.println("점수 입력이 실패했습니다.");
+			System.out.println("[점수 입력 실패]");
 		}
 	}
 
