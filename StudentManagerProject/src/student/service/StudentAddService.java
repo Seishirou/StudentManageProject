@@ -22,7 +22,7 @@ public class StudentAddService implements StudentService {
 		String addr = scan.nextLine();
 		System.out.print("성별 입력 : ");
 		String gender = scan.nextLine();
-		System.out.print("학급 입력(A/B/C/...) : ");
+		System.out.print("학급 입력(A/B/C) : ");
 		String clazz = scan.nextLine();
 		System.out.print("키 입력 : ");
 		double height = scan.nextDouble();

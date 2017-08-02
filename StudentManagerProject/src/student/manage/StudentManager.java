@@ -5,6 +5,8 @@ package student.manage;
  * 입출력 불가능
  */
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -21,11 +23,12 @@ public class StudentManager {
 		list.add(new Student(3, "김민정", "서울", "여자", "C", 164, 32, 200, 3));
 		list.add(new Student(4, "이용진", "경기", "남자", "A", 170, 27, 80, 1));
 	}
+
 	// #1 학생 추가 메소드
 	public static boolean addStudent(Student s) {
 		return list.add(s);
 	}
-	
+
 	// #2 번호 확인 메소드
 	public static boolean numCheck(int num) {
 		for (int i = 0; i < list.size(); i++) {
@@ -35,7 +38,7 @@ public class StudentManager {
 		}
 		return false;
 	}
-	
+
 	// #2 점수 추가 메소드
 	public static boolean addScore(int num, int score) {
 		for (int i = 0; i < list.size(); i++) {
@@ -46,56 +49,94 @@ public class StudentManager {
 		}
 		return false;
 	}
-	
-	// #3 학생리스트 출력 8버전
-	// 이름 오름차순 정렬
+
+	// #3 학생리스트 출력
+	// 이름 오름차순 정렬 8v
 	public static Stream<Student> ascendingName() {
 		Stream<Student> s = list.stream().sorted();
 		return s;
 	}
-	// 성적 내림차순 정렬
+
+	// 이름 오름차순 정렬 7v
+//	public static List<Student> ascendingName() {
+//		Collections.sort(list, new Comparator<Student>() {
+//			@Override
+//			public int compare(Student o1, Student o2) {
+//				return o1.getName().compareTo(o2.getName());
+//			}
+//		});
+//		return list;
+//	}
+
+	// 성적 내림차순 정렬 8v
 	public static Stream<Student> descendingScore() {
 		Stream<Student> s = list.stream().sorted((o1, o2) -> o2.getScore() - o1.getScore());
 		return s;
 	}
-	// 반별 리스트 출력
+	// 성적 내림차순 정렬 7v
+//	public static List<Student> descendingScore() {
+//		Collections.sort(list, new Comparator<Student>() {
+//			@Override
+//			public int compare(Student o1, Student o2) {
+//				return o1.getScore() - o2.getScore();
+//			}
+//		});
+//		return list;
+//	}
+
+	// 반별 리스트 출력 8v
 	public static Stream<Student> clazzList() {
 		Stream<Student> s = list.stream().sorted((o1, o2) -> o1.getClazz().compareTo(o2.getClazz()));
 		return s;
 	}
+
+	// 반별 리스트 출력 7v
+//	public static List<Student> clazzList() {
+//		Collections.sort(list, new Comparator<Student>() {
+//			@Override
+//			public int compare(Student o1, Student o2) {
+//				return o1.getClazz().compareTo(o2.getClazz());
+//			}
+//		});
+//		return list;
+//	}
 	
 	// #4 학생정보검색
 	// 주소 검색
 	public static Stream<Student> addressSearch(String addr) {
 		return list.stream().filter(t -> addr.equals(t.getAddr()));
 	}
+
 	// 이름 검색
 	public static Stream<Student> nameSearch(String name) {
 		return list.stream().filter(t -> name.equals(t.getName()));
 	}
-	
+
 	// #5 통계 정보
 	// 성별별 그룹핑
 	public static Map<String, List<Student>> genderGroup() {
 		Map<String, List<Student>> map = list.stream().collect(Collectors.groupingBy(t -> t.getGender()));
 		return map;
 	}
+
 	// 반별 성적 평균
 	public static Map<String, Double> groupAverage() {
-		Map<String, Double> map = list.stream().collect(Collectors.groupingBy(t -> t.getClazz(), Collectors.averagingInt(t -> t.getScore())));
+		Map<String, Double> map = list.stream()
+				.collect(Collectors.groupingBy(t -> t.getClazz(), Collectors.averagingInt(t -> t.getScore())));
 		return map;
 	}
+
 	// 주소별 성적 평균
 	public static Map<String, Double> addrAverage() {
-		Map<String, Double> map = list.stream().collect(Collectors.groupingBy(t -> t.getAddr(), Collectors.averagingInt(t -> t.getScore())));
+		Map<String, Double> map = list.stream()
+				.collect(Collectors.groupingBy(t -> t.getAddr(), Collectors.averagingInt(t -> t.getScore())));
 		return map;
 	}
+
 	// 학년별 키 평균
 	public static Map<Integer, Double> heightAverage() {
-		Map<Integer, Double> map = list.stream().collect(Collectors.groupingBy(t -> t.getYear(), Collectors.averagingDouble(t -> t.getHeight())));
+		Map<Integer, Double> map = list.stream()
+				.collect(Collectors.groupingBy(t -> t.getYear(), Collectors.averagingDouble(t -> t.getHeight())));
 		return map;
 	}
-	
-
-	
 }

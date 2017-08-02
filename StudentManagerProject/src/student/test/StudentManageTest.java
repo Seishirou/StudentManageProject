@@ -32,7 +32,7 @@ import student.service.StudentStatisticsService;
  *  에러처리 - 성공/실패 여부 확인 메시지 확인
  *  github commit & push
  *  주석처리
- *  throw 
+ *  throw - Runtime Exception에서 발생하는 예외 처리 try ~ catch
  */
 public class StudentManageTest {
 	public static void main(String[] args) {
@@ -55,16 +55,16 @@ public class StudentManageTest {
 				sgs.execute(scan);
 				break;
 			case 3:
-				StudentListViewService slv = new StudentListViewService();
-				slv.execute(scan);
+				StudentListViewService slvs = new StudentListViewService();
+				slvs.execute(scan);
 				break;
 			case 4:
-				StudentSearchService ss = new StudentSearchService();
-				ss.execute(scan);
+				StudentSearchService sss = new StudentSearchService();
+				sss.execute(scan);
 				break;
 			case 5:
-				StudentStatisticsService sst = new StudentStatisticsService();
-				sst.execute(scan);
+				StudentStatisticsService ssts = new StudentStatisticsService();
+				ssts.execute(scan);
 				break;
 			case 0:
 				System.out.println("프로그램을 종료합니다.");

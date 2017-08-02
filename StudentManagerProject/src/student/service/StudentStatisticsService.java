@@ -1,8 +1,10 @@
 package student.service;
 
+import java.util.List;
 import java.util.Scanner;
 
 import student.manage.StudentManager;
+import student.vo.Student;
 
 /**
  * 통계정보를 출력하는 클래스
@@ -12,27 +14,38 @@ public class StudentStatisticsService implements StudentService {
 
 	@Override
 	public void execute(Scanner scan) {
-		System.out.println("================================================================");
-		System.out.println("1.성별별 그룹핑 |2.반별 성적 평균 |3.주소별 성적 평균 |4.학년별 키 평균");
-		System.out.println("================================================================");
-		System.out.print("입력 : ");
-		int menu = scan.nextInt();
-		switch (menu) {
-		case 1:
-			System.out.println(StudentManager.genderGroup());
-			break;
-		case 2:
-			System.out.println(StudentManager.groupAverage());
-			break;
-		case 3:
-			System.out.println(StudentManager.addrAverage());
-			break;
-		case 4:
-			System.out.println(StudentManager.heightAverage());
-			break;
-		default:
-			System.out.println("잘못 입력하셨습니다.");
-			break;
+		while(true){
+			System.out.println("=================================메뉴 선택=======================================");
+			System.out.println("1.성별별 그룹핑 |2.반별 성적 평균 |3.주소별 성적 평균 |4.학년별 키 평균 |0.통계정보 종료");
+			System.out.println("================================================================================");
+			System.out.print("입력 : ");
+			int menu = scan.nextInt();
+			switch (menu) {
+			case 1:
+				List<Student> l1 = StudentManager.genderGroup().get("남자");
+				System.out.println("[남자 그룹]");
+				l1.stream().forEach(t -> {System.out.println(t);});
+				List<Student> l2 = StudentManager.genderGroup().get("여자");
+				System.out.println("[여자 그룹]");
+				l2.stream().forEach(t -> {System.out.println(t);});
+				break;
+			case 2:
+				System.out.println("[반별 성적 평균] : " + StudentManager.groupAverage());
+				break;
+			case 3:
+				System.out.println("[주소별 성적 평균] : " +StudentManager.addrAverage());
+				break;
+			case 4:
+				System.out.println("[학년별 키 평균] : " +StudentManager.heightAverage());
+				break;
+			case 0:
+				System.out.println("[통계 정보 종료]");
+				return;
+			default:
+				System.out.println("잘못 입력하셨습니다.");
+				break;
+			}
+			
 		}
 	}
 
